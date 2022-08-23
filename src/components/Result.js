@@ -5,9 +5,22 @@ import { saveAs } from 'file-saver';
 const Result = React.memo(({result, dataset, onBack, onReset, loadState}) => {
 
   const downloadJson = () => {
+    console.log("json downloading...")
     const blob = new Blob([JSON.stringify([dataset, result])], {type: "data:text/json;charset=utf-8"});
     saveAs(blob, "result.json")
   };
+    
+  const onSendEmailClicked = () => {
+    console.log('button pressed');
+    fetch('/api/sendmail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([dataset, result])
+    });
+  }
 
   const loadJson = () => {
 
@@ -45,6 +58,7 @@ const Result = React.memo(({result, dataset, onBack, onReset, loadState}) => {
           <button type="button" className="btn btn-info" onClick={onBack}>Back</button>
         </div>
         <div className="col-md-8 col-md-offset-2">
+          <button className="btn btn-success download-btn" onClick={onSendEmailClicked}>Submit form for Curation</button>
           <button className="btn btn-success download-btn" onClick={downloadJson}>Save your entries as JSON</button>
           <button className="btn btn-info loaddata-btn" onClick={loadJson}>Load previous metadata</button>
           <button className="btn btn-info" onClick={onReset}>Create another dataset</button>

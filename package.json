@@ -7,11 +7,15 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "body-parser": "^1.20.0",
     "bootstrap": "4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
     "file-saver": "2.0.5",
     "jquery": "^1.9.1",
     "lodash-uuid": "0.0.3",
     "moment": "^2.20.0",
+    "nodemailer": "^6.7.8",
     "npm": "^7.24.1",
     "popper.js": "^1.16.1",
     "react": "^16.14.0",
@@ -25,16 +29,16 @@
     "react-jsonschema-form-extras": "^0.9.67",
     "react-rte": "^0.15.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yarn": "^1.22.19"
   },
   "scripts": {
-    "prestart": "npm install -g serve@13.0.2",
-    "start": "serve -s build -l 8080",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/"
+    "build": "webpack",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
+
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": [
       "react-app",

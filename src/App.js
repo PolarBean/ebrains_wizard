@@ -8,6 +8,12 @@ const App = () => (
     </header>
     <div className="gradient"></div>
     <div className="container form">
+
+
+
+
+
+      
       <Wizard />
     </div>
     <footer className="footer app-footer">
